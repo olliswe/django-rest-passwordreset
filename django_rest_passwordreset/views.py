@@ -133,6 +133,7 @@ class ResetPasswordRequestToken(GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         email = serializer.validated_data['email']
+        url = serializer.validated_data['url']
 
         # before we continue, delete all existing expired tokens
         password_reset_token_validation_time = get_password_reset_token_expiry_time()
@@ -183,7 +184,7 @@ class ResetPasswordRequestToken(GenericAPIView):
                     )
                 # send a signal that the password token was created
                 # let whoever receives this signal handle sending the email for the password reset
-                reset_password_token_created.send(sender=self.__class__, instance=self, reset_password_token=token)
+                reset_password_token_created.send(sender=self.__class__, instance=self, reset_password_token=token, url=url)
         # done
         return Response({'status': 'OK'})
 
