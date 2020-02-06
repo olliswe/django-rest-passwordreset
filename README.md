@@ -53,7 +53,7 @@ urlpatterns = [
 
 The following endpoints are provided:
 
- * `POST ${API_URL}/reset_passaword/` - request a reset password token by using the ``email`` and ``url`` parameter. The url paramater should countain your app/website root URL
+ * `POST ${API_URL}/reset_passaword/` - request a reset password token by using the ``email`` and ``url`` parameter. The url paramater should countain your app/website root URL. If you are using Expo, this URL can be generated using the Linking.makeUrl() method [see link](https://docs.expo.io/versions/latest/workflow/linking/).
  * `POST ${API_URL}/reset_password/confirm/` - using a valid ``token``, the users password is set to the provided ``password``
  * `POST ${API_URL}/reset_password/validate_token/` - will return a 200 if a given ``token`` is valid
  
