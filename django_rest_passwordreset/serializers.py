@@ -11,6 +11,8 @@ __all__ = [
 
 class EmailSerializer(serializers.Serializer):
     email = serializers.EmailField()
+    url = serializers.CharField()
+
 
 
 class PasswordTokenSerializer(serializers.Serializer):
